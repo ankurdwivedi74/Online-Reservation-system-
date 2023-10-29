@@ -1,0 +1,51 @@
+package numberguess;
+
+import java.util.Scanner;
+import java.util.Random;
+public class NumberGuessingGame {
+	
+	static int number;
+    static String name;
+    static Scanner s=new Scanner(System.in);
+    public static void main(String[] args)
+    {
+        System.out.println("Please Enter your Name :");
+        name=s.next();
+        
+        System.out.println("Very Very Welcome : "+name);
+        Random random_number=new Random();
+        
+        System.out.println("==========================================");
+        number=random_number.nextInt(50);
+        System.out.println("Well "+name+" i am thinking of a number between 1 to 50"); 
+ 
+        for(int i=0;i<6;i++)
+        {
+        	System.out.println("                    ");
+            System.out.println("now take a guess");
+            int your_guess=s.nextInt();
+            
+            if(your_guess==number)
+            {
+                System.out.println("Congratulation !!! "+name+" your guess is correct");
+                System.out.println("-------------------------------------");
+                break;
+            }
+            else if(your_guess>number)
+            {
+                System.out.println("Sorry "+name+" your Guess is too high");
+                System.out.println("--------------------------------------");
+            }
+            else if(your_guess<number)
+            {
+                System.out.println("Sorry "+name+" your Guess is too low");
+                System.out.println("--------------------------------------");
+            }
+            if(i>=5)
+            {
+                System.out.println("-----------------------------------------");
+                System.out.println("sorry "+name+" the number I was thinking was "+number+" !!!");
+            } 
+        }
+    }
+}
