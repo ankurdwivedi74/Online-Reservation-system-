@@ -1,0 +1,112 @@
+package atm;
+
+import java.util.Scanner;
+
+public class AtmInterface 
+{
+    static Scanner s=new Scanner(System.in);
+    Double available_amount;
+    Double balance=20000.00;
+    static int pin;
+    
+    public static void main(String[] args)
+    {
+        System.out.println("========================== WELCOME TO THE ATM ==========================");
+        System.out.println("Enter your PIN");
+        
+        AtmInterface obj=new AtmInterface();    
+        obj.getPin();
+    }
+    
+    void getPin()
+    {
+        pin =s.nextInt();
+        checkPin();
+    }
+    
+    void checkPin()
+    {
+       if(pin==3456)
+       {
+            menu();        
+       }
+       else
+       {
+           System.out.println("Please enter valid PIN");
+           getPin();
+       }
+    }
+    
+    void menu()
+    {
+        System.out.println("==========================================");
+        System.out.println("Please Enter Your Choice :");
+        System.out.println(" 1. For Check Account Balance");
+        System.out.println(" 2. For Withdraw The Cash ");
+        System.out.println(" 3. For Deposit The Cash");
+        System.out.println(" 4. For Quit");
+        System.out.println("===========================================");
+        
+        int choice = s.nextInt();
+        switch(choice)
+        {
+            case 1 : check_Account_Balance();
+            break;
+            
+            case 2: withdraw_Cash();
+            break;
+            
+            case 3 : deposit_Cash();
+            break;
+            
+            case 4: quit();
+            break;
+            
+            default : System.out.println("Please Enter Valid Choice");
+            menu();
+            break;
+        }
+    }
+    
+    void check_Account_Balance() 
+    {
+        System.out.println("Your Account Balance Is : "+balance);
+        menu();
+    }
+    
+    void withdraw_Cash()
+    {
+        System.out.println("How Much amount you want to be withdraw");
+        Double withdraw_amount=s.nextDouble();
+        
+        if(withdraw_amount>balance)
+        {
+            System.out.println("Please Check your Account balance");
+            menu();
+        }
+        else
+        {
+            available_amount=balance-withdraw_amount;
+            System.out.println("Your Available Amount is :"+available_amount);
+            menu();
+        }
+    }
+    
+    void deposit_Cash()
+    {
+         System.out.println("How much Amount you want to be deposit");
+         Double deposit_amount=s.nextDouble();
+         
+         balance=available_amount+deposit_amount;
+         System.out.println("Money Deposited Successfully");
+         System.out.println("Your Available amount is :"+balance);
+         
+         menu();
+    }
+    
+    void quit()
+    {
+        System.exit(0);
+    }
+}
+
